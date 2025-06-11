@@ -99,13 +99,12 @@ class Plex:
             logger.error("Plex server is not connected. Cannot send scan request.")
             return
 
-        parent_dir = Path(file_path).parent
         try:
             logger.debug(
-                f"Sending scan request for library {library_key} at {parent_dir}"
+                f"Sending scan request for library {library_key} at {file_path}"
             )
-            self.server.library.sectionByID(library_key).update(path=str(parent_dir))
-            logger.info(f"Scan request sent for library {library_key} at {parent_dir}")
+            self.server.library.sectionByID(library_key).update(path=str(file_path))
+            logger.info(f"Scan request sent for library {library_key} at {file_path}")
         except PlexApiException as e:
             logger.error(f"Failed to send scan request: {e}")
 
