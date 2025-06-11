@@ -1,0 +1,9 @@
+services:
+    rescan:
+        restart: unless-stopped
+        container_name: rescan
+        build: .
+        volumes:
+            - ./config:/app/config
+            - /etc/localtime:/etc/localtime:ro
+            - /mnt:/mnt
